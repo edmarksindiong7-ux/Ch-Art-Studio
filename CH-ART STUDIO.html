@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CH-ART Studio</title>
+
+<link rel="icon" type="image/png" href="/cas.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:#121212;
+    color:#f3f1ea;
+    font-family:'Poppins',sans-serif;
+    overflow-x:hidden;
+}
+
+header{
+    width:100%;
+    padding:18px 8%;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(18,18,18,0.92);
+    border-bottom:1px solid rgba(216,180,92,0.12);
+    position:sticky;
+    top:0;
+    z-index:1000;
+    backdrop-filter:blur(8px);
+}
+
+.logo{
+    font-size:28px;
+    color:#6c7ea6;
+    font-family:'Playfair Display',serif;
+    letter-spacing:1px;
+    text-decoration:none;
+    font-weight:700;
+}
+
+.logo:hover{
+    color:#d8b45c;
+}
+
+nav{
+    display:flex;
+    align-items:center;
+    gap:25px;
+}
+
+nav a{
+    text-decoration:none;
+    color:#f3f1ea;
+    position:relative;
+    font-size:15px;
+    transition:0.3s;
+}
+
+nav a::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:-6px;
+    width:0;
+    height:1.5px;
+    background:#d8b45c;
+    transition:0.3s;
+}
+
+nav a:hover{
+    color:#d8b45c;
+}
+
+nav a:hover::after{
+    width:100%;
+}
+
+.hamburger {
+    display: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #f3f1ea;
+    z-index: 1001;
+}
+
+.hero{
+    min-height:92vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:40px 8%;
+    position:relative;
+    overflow:hidden;
+}
+
+.hero::before{
+    content:'';
+    position:absolute;
+    inset:0;
+    background-size:cover;
+    background-position:center;
+    animation: bgFade 40s infinite;
+    z-index:-2;
+}
+
+.hero::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:rgba(18,18,18,0.72);
+    z-index:-1;
+}
+
+@keyframes bgFade {
+    0%, 10%   { background-image:url('/manet.jpg'); opacity:1; }
+    11%, 12%  { opacity:0; }
+    12.5%, 22% { background-image:url('/icarus.jpg'); opacity:1; }
+    23%, 27%  { opacity:0; }
+    27.5%, 37% { background-image:url('/joker.jpg'); opacity:1; }
+    38%, 42%  { opacity:0; }
+    42.5%, 52% { background-image:url('/monalisa.jpg'); opacity:1; }
+    53%, 57%  { opacity:0; }
+    57.5%, 67% { background-image:url('/Napoleon.jpg'); opacity:1; }
+    68%, 72%  { opacity:0; }
+    72.5%, 82% { background-image:url('/wolves.jpg'); opacity:1; }
+    83%, 87%  { opacity:0; }
+    87.5%, 94% { background-image:url('/pearl.jpg'); opacity:1; }
+    95%, 99%  { opacity:0; }
+    100%      { background-image:url('/starrynight.jpg'); opacity:1; }
+}
+
+.hero-content h1 {
+    font-size: 82px;
+    color: #d8b45c;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 14px;
+}
+
+.hero-content p {
+    color: #d7d3c9;
+    max-width: 760px;
+    line-height: 1.9;
+    font-size: 17px;
+    margin: 0 auto;
+}
+
+.hero-btn {
+    margin-top: 35px;
+    padding: 14px 34px;
+    border: none;
+    background: #6c7ea6;
+    color: #f3f1ea;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.hero-btn:hover {
+    background: #d8b45c;
+    color: #121212;
+    transform: translateY(-2px);
+}
+
+.section{
+    padding:95px 8%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:42px;
+    margin-bottom:15px;
+    color:#d8b45c;
+    font-family:'Playfair Display',serif;
+}
+
+.section-sub{
+    text-align:center;
+    color:#cfc7b7;
+    margin-bottom:55px;
+}
+
+.card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:24px;
+}
+
+.card{
+    background:#1e2230;
+    border:1px solid rgba(216,180,92,0.12);
+    border-radius:24px;
+    padding:28px;
+    transition:0.35s;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(216,180,92,0.4);
+}
+
+.card h3{
+    color:#d8b45c;
+    margin-bottom:12px;
+    font-size:22px;
+    font-family:'Playfair Display',serif;
+}
+
+.card p{
+    color:#d8d3ca;
+    line-height:1.8;
+    font-size:14px;
+}
+
+.gallery-img{
+    width:100%;
+    border-radius:16px;
+    margin-bottom:15px;
+    height:220px;
+    object-fit:cover;
+}
+
+.journey-btn{
+    margin-top:15px;
+    padding:10px 20px;
+    background:#6c7ea6;
+    color:#f3f1ea;
+    border:none;
+    border-radius:40px;
+    cursor:pointer;
+    font-size:14px;
+    width:100%;
+    transition:0.3s;
+}
+
+.journey-btn:hover{
+    background:#d8b45c;
+    color:#121212;
+}
+
+.footer{
+    padding:60px 8% 40px;
+    text-align:center;
+    border-top:1px solid rgba(216,180,92,0.12);
+    background:#181b24;
+    color:#bdb6a7;
+}
+
+.footer-logo{
+    font-size:26px;
+    color:#6c7ea6;
+    font-family:'Playfair Display',serif;
+    text-decoration:none;
+    margin-bottom:12px;
+    display:inline-block;
+}
+
+.footer-socials{
+    margin-top:30px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:16px;
+}
+
+.footer-socials a{
+    text-decoration:none;
+    color:#f3f1ea;
+    padding:10px 18px;
+    border:1px solid rgba(216,180,92,0.15);
+    border-radius:40px;
+    transition:0.3s;
+    background:#1f2431;
+}
+
+.footer-socials a:hover{
+    color:#d8b45c;
+    border-color:rgba(216,180,92,0.4);
+    background:#242936;
+}
+
+.profile-pic{
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #d8b45c;
+    margin:20px auto;
+    display:block;
+}
+
+.art-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:10px;
+    margin-top:10px;
+}
+
+.art-item{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+    border-radius:12px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.art-item:hover{
+    transform:scale(1.05);
+    filter:brightness(1.1);
+}
+
+.lightbox{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.95);
+    display:none;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+    cursor:zoom-out;
+}
+
+.lightbox img{
+    max-width:90%;
+    max-height:85%;
+    border-radius:12px;
+    transform:scale(0.9);
+    transition:0.3s ease;
+}
+
+.lightbox.show img{
+    transform:scale(1);
+}
+
+#videoModal{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.94);
+    z-index:3000;
+    align-items:center;
+    justify-content:center;
+}
+
+#aboutPanel{
+    position:fixed;
+    top:0;
+    right:-100%;
+    width:100%;
+    max-width:700px;
+    height:100%;
+    background:#181b24;
+    z-index:5000;
+    transition:0.5s;
+    overflow-y:auto;
+    padding:50px;
+}
+
+#aboutPanel.active{
+    right:0;
+}
+
+.about-content h1{
+    color:#d8b45c;
+    font-size:48px;
+    margin-bottom:20px;
+    font-family:'Playfair Display',serif;
+}
+
+.about-content h2{
+    margin-bottom:18px;
+}
+
+.about-content p{
+    line-height:1.9;
+    margin-bottom:20px;
+    color:#d7d3c9;
+}
+
+#closeAbout{
+    position:absolute;
+    top:20px;
+    right:30px;
+    background:none;
+    border:none;
+    color:white;
+    font-size:40px;
+    cursor:pointer;
+}
+
+@media(max-width:768px){
+    .hero-content h1{
+        font-size: 48px/
+        line-height: 1.1;
+    }
+    
+    .hero-content p {
+        font-size: 16px;
+    }
+    
+    .hero {
+        min-height: 85vh;
+        padding: 30px 5%;
+    }
+
+    .section-title {
+        font-size: 34px;
+    }
+
+
+    .hamburger {
+        display: block;
+    }
+
+    nav {
+        position: fixed;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100vh;
+        background: #121212;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 35px;
+        transition: 0.4s ease;
+        z-index: 1000;
+        padding-top: 80px;
+    }
+
+    nav.active {
+        left: 0;
+    }
+
+    nav a {
+        font-size: 24px;
+    }
+
+    nav a::after {
+        bottom: -10px;
+        height: 2px;
+    }
+}
+
+@media(max-width:480px){
+    .hero-content h1 {
+        font-size: 42px;
+    }
+    .inspiration-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 28px;
+    margin-top: 30px;
+}
+
+.inspiration-card {
+    background: #1e2230;
+    border: 1px solid rgba(216,180,92,0.15);
+    border-radius: 24px;
+    overflow: hidden;
+    transition: 0.4s;
+}
+
+.inspiration-card:hover {
+    transform: translateY(-8px);
+    border-color: #d8b45c;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+}
+
+.inspiration-card img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+}
+
+.inspiration-info {
+    padding: 24px;
+}
+
+.inspiration-info h3 {
+    color: #d8b45c;
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 6px;
+    font-size: 22px;
+}
+
+.inspiration-info .artist {
+    color: #6c7ea6;
+    font-style: italic;
+    margin-bottom: 16px;
+}
+
+.inspiration-info p {
+    line-height: 1.75;
+    color: #d7d3c9;
+    font-size: 15px;
+}
+.footer{
+    text-align:center;
+    border-top:1px solid rgba(216,180,92,0.12);
+    background:#181b24;
+    color:#bdb6a7;
+}
+
+.footer-logo{
+    font-size:26px;
+    color:#6c7ea6;
+    font-family:'Playfair Display',serif;
+    text-decoration:none;
+    margin-bottom: 20px;
+    display:inline-block;
+}
+
+.footer p {
+    margin-bottom: 18px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-socials{
+    margin-top: 35px;       
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:18px;
+}
+
+.footer-socials a {
+    padding: 12px 20px;
+    font-size: 18px;
+}
+.footer-socials a:hover {
+    color: #d8b45c;
+    border-color: #d8b45c;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(216,180,92,0.1);
+    font-size: 14px;
+    color: #8a8373;
+}
+
+@media(max-width:768px){
+    .footer {
+        padding: 60px 6% 30px;
+    }
+    
+    .footer-logo {
+        font-size: 28px;
+    }
+}
+}
+</style>
+</head>
+<body>
+
+
+<header>
+    <a href="#home" class="logo">CAS</a>
+
+    <nav>
+    <a href="#home">Home</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#inspirations">Inspirations</a>
+    <a href="#lessons">Lessons</a>
+    <a href="#journey">Journey</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#" id="openAbout">About</a>
+</nav>
+    <div class="hamburger" id="hamburger">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+</header>
+
+<section class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>CH-ART Studio</h1>
+
+        <p>
+            Learn art through elegant step-by-step lessons inspired by traditional artistic foundations.
+            Start with sketching basics, understand the Loomis method,
+            study art principles, and improve through consistent practice.
+        </p>
+
+        <button class="hero-btn" onclick="document.getElementById('lessons').scrollIntoView({behavior:'smooth'})">
+    Begin Your Artistic 
+</button>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="gallery">
+
+    <h2 class="section-title">Art Inspirations</h2>
+
+    <p class="section-sub">
+        Inspired by sketch studies, artistic elegance, and timeless creativity.
+    </p>
+
+    <div class="card-grid">
+
+        <div class="card">
+            <img src="/Painting.jpeg" class="gallery-img">
+            <h3>Color & Emotion</h3>
+            <p>
+                Study how artists use colors and lighting to create emotion and atmosphere.
+            </p>
+        </div>
+
+        <div class="card">
+            <img src="/Sketching.jpg" class="gallery-img">
+            <h3>Sketch Practice</h3>
+            <p>
+                Learn the foundations of artistic sketching through structure and observation.
+            </p>
+        </div>
+
+        <div class="card">
+            <img src="/Art Studio.jpeg" class="gallery-img">
+            <h3>Creative Studio</h3>
+            <p>
+                Explore creative spaces that inspire imagination and artistic thinking.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="section" id="inspirations">
+    <h2 class="section-title">Masterpiece Inspirations</h2>
+    <p class="section-sub">
+        Study these timeless works — learn their stories, techniques, and color mastery.
+    </p>
+
+    <div class="inspiration-grid">
+        <div class="inspiration-card">
+            <img src="/pearl.jpg" alt="Girl with a Pearl Earring">
+            <div class="inspiration-info">
+                <h3>Girl with a Pearl Earring</h3>
+                <p class="artist">Johannes Vermeer • 1665</p>
+                <p><strong>Inspiration:</strong> Masterpiece of light, mystery, and quiet beauty.</p>
+                <p><strong>Color Tip:</strong> Exceptional use of light and shadow. Subtle glazing on the pearl and eyes.</p>
+            </div>
+        </div>
+
+        <div class="inspiration-card">
+            <img src="/monalisa.jpg" alt="Mona Lisa by Leonardo da Vinci">
+            <div class="inspiration-info">
+                <h3>Mona Lisa</h3>
+                <p class="artist">Leonardo da Vinci • 1503–1506</p>
+                <p><strong>Inspiration:</strong> The masterpiece of subtle emotion and realistic portraiture.</p>
+                <p><strong>Color Tip:</strong> Use soft blending (sfumato). Warm skin tones with cool gray shadows. Practice gentle glazing for smooth transitions.</p>
+            </div>
+        </div>
+
+        <div class="inspiration-card">
+            <img src="/starrynight.jpg" alt="Starry Night by Van Gogh">
+            <div class="inspiration-info">
+                <h3>The Starry Night</h3>
+                <p class="artist">Vincent van Gogh • 1889</p>
+                <p><strong>Inspiration:</strong> Express emotion through swirling movement and vibrant night sky.</p>
+                <p><strong>Color Tip:</strong> Strong contrast of deep blues and bright yellows. Use thick, visible brush strokes (impasto) to create energy.</p>
+            </div>
+        </div>
+
+        <div class="inspiration-card">
+            <img src="/Napoleon.jpg" alt="Napoleon Crossing the Alps">
+            <div class="inspiration-info">
+                <h3>Napoleon Crossing the Alps</h3>
+                <p class="artist">Jacques-Louis David • 1801</p>
+                <p><strong>Inspiration:</strong> Dramatic heroism and powerful composition.</p>
+                <p><strong>Color Tip:</strong> Use strong chiaroscuro — warm golden light on the figure against cool mountain tones.</p>
+            </div>
+        </div>
+
+        <div class="inspiration-card">
+            <img src="/wolves.jpg" alt="Agnus by Konstantin Korobov">
+            <div class="inspiration-info">
+                <h3>Agnus</h3>
+                <p class="artist">Konstantin Korobov • 2022</p>
+                <p><strong>Inspiration:</strong> Powerful contrast between innocence and ferocity.</p>
+                <p><strong>Color Tip:</strong> Dramatic lighting with pure white against dark, rich wolf tones. Focus on high contrast.</p>
+            </div>
+        </div>
+
+        <div class="inspiration-card">
+            <img src="/manet.jpg" alt="Japanese Bridge by Claude Monet">
+            <div class="inspiration-info">
+                <h3>The Japanese Bridge</h3>
+                <p class="artist">Claude Monet • 1899</p>
+                <p><strong>Inspiration:</strong> Light, reflection, and atmospheric color.</p>
+                <p><strong>Color Tip:</strong> Layer many greens, blues, and purples. Use broken color technique — small strokes of pure color next to each other.</p>
+            </div>
+        </div>
+        <div style="margin-top: 60px; text-align: center; max-width: 850px; margin-left: auto; margin-right: auto;">
+        
+        <p style="font-size: 21px; font-family: 'Playfair Display', serif; color: #d8b45c; line-height: 1.6; font-style: italic; margin-bottom: 35px;">
+            “Color is the place where our brain and the universe meet.”
+        </p>
+        <p style="color: #6c7ea6; font-size: 17px; margin-bottom: 40px;">
+            — Paul Klee
+        </p>
+
+        <p style="font-size: 21px; font-family: 'Playfair Display', serif; color: #d8b45c; line-height: 1.6; font-style: italic;">
+            “The chief function of color should be to serve expression.”
+        </p>
+        <p style="color: #6c7ea6; font-size: 17px;">
+            — Henri Matisse
+        </p>
+
+        <p style="margin-top: 40px; color: #d7d3c9; font-size: 15.5px; line-height: 1.7;">
+            Let these masterpieces guide your hand and eyes.<br>
+            Observe deeply. Feel the colors. Create with emotion.
+        </p>
+    </div>
+
+    </div>
+</section>
+
+
+
+<section class="section" id="lessons">
+
+    <h2 class="section-title">Start Your Practice</h2>
+
+    <p class="section-sub">
+        Small habits shape strong artists.
+    </p>
+
+    <div class="card-grid">
+
+        <div class="card">
+            <h3>Consistency</h3>
+            <p>
+                Great artists are built through daily practice and patience.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Focus on Yourself</h3>
+            <p>
+                Learn from others without comparing your progress.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Observation</h3>
+            <p>
+                Learn to see shapes, shadows, and structure clearly.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Your Progress</h3>
+            <p>
+                Start from simple forms and slowly build confidence.
+            </p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="section" id="journey">
+<div class="card-grid">
+
+    <div class="card">
+        <h3>Sketch Basics</h3>
+        <p>Learn lines, circles, and hand control.</p>
+
+        <button class="journey-btn"
+        data-video="https://www.youtube.com/embed/2jBbTweQuaU"
+        data-title="Sketch Basics">
+        Watch Video Tutorial
+        </button>
+    </div>
+
+    <div class="card">
+        <h3>Shapes & Shading</h3>
+        <p>Understand depth, light, and realism.</p>
+
+        <button class="journey-btn"
+        data-video="https://www.youtube.com/embed/9hz_GX0eD5w"
+        data-title="Shapes & Shading">
+        Watch Video Tutorial
+        </button>
+    </div>
+
+    <div class="card">
+        <h3>Loomis Method</h3>
+        <p>Learn head structure and proportions.</p>
+
+        <button class="journey-btn"
+        data-video="https://www.youtube.com/embed/A6KMT4Potss"
+        data-title="Loomis Method">
+        Watch Video Tutorial
+        </button>
+    </div>
+
+    <div class="card">
+        <h3>Facial Proportions</h3>
+        <p>Study natural facial alignment and spacing.</p>
+
+        <button class="journey-btn"
+        data-video="https://www.youtube.com/embed/efdhf-4_kmA"
+        data-title="Facial Proportions">
+        Watch Video Tutorial
+        </button>
+    </div>
+
+    <div class="card">
+        <h3>Principles of Arts</h3>
+        <p>Understanding what</p>
+
+        <button class="journey-btn"
+        data-video="https://www.youtube.com/embed/ijAA2r1_fyM"
+        data-title="Advanced Sketching">
+        Watch Video Tutorial
+        </button>
+    </div>
+
+    <div class="card">
+        <h3>Final Practice</h3>
+        <p>Apply everything you learned into full drawings.</p>
+
+        <button class="journey-btn"
+        data-video="https://www.youtube.com/embed/668MFOGHiMo"
+        data-title="Final Practice">
+        Watch Video Tutorial
+        </button>
+    </div>
+
+</div>
+
+</section>
+
+
+<section class="section" id="reviews">
+
+    <h2 class="section-title">Student Reviews</h2>
+
+    <p class="section-sub">
+        Encouragement from artists learning together.
+    </p>
+
+    <div style="max-width:600px; margin:0 auto 30px;">
+
+        <input id="reviewName" placeholder="Your name (optional)"
+        style="width:100%; padding:10px; margin-bottom:10px; border-radius:8px; border:none;">
+
+        <textarea id="reviewText" placeholder="Write your comment..."
+        style="width:100%; padding:10px; height:80px; border-radius:8px; border:none;"></textarea>
+
+        <select id="reviewStars"
+        style="width:100%; padding:10px; margin-top:10px; border-radius:8px; border:none;">
+            <option value="5">★★★★★</option>
+            <option value="4">★★★★</option>
+            <option value="3">★★★</option>
+            <option value="2">★★</option>
+            <option value="1">★</option>
+        </select>
+
+        <button onclick="addReview()"
+        style="margin-top:10px; padding:10px 20px; border:none; border-radius:30px; background:#6c7ea6; color:white; cursor:pointer;">
+            Post Review
+        </button>
+
+    </div>
+
+    <div id="reviewContainer" class="card-grid">
+    </div>
+
+
+
+<footer class="footer">
+    <a href="#home" class="footer-logo">CAS</a>
+    
+    <p><strong>Learn Art from Sketch to Mastery</strong></p>
+    <p>Inspired by creativity, elegance, and visual learning.</p>
+    
+    <div class="footer-socials">
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#"><i class="fa-brands fa-tiktok"></i></a>
+        <a href="#"><i class="fa-solid fa-phone"></i></a>
+    </div>
+</footer>
+
+<div id="lightbox" class="lightbox">
+    <img id="lightbox-img" src="">
+</div>
+
+<div id="videoModal">
+
+
+    <div style="background:#1e2230; width:90%; max-width:900px; border-radius:16px; overflow:hidden;">
+
+        <div style="padding:15px 20px; background:#121212; display:flex; justify-content:space-between; align-items:center;">
+
+            <h3 id="modalTitle" style="color:#d8b45c;">
+                Video Tutorial
+            </h3>
+
+            <button onclick="closeVideoModal()"
+            style="background:none; border:none; color:white; font-size:28px; cursor:pointer;">
+
+            ×
+
+            </button>
+
+        </div>
+
+        <div style="position:relative; padding-top:56.25%;">
+
+            <iframe id="videoFrame"
+            width="100%"
+            height="100%"
+            style="position:absolute; top:0; left:0;"
+            frameborder="0"
+            allowfullscreen></iframe>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div id="aboutPanel">
+
+    <div class="about-content">
+
+        <button id="closeAbout">
+            ×
+        </button>
+
+        <h1>About CH-ART Studio</h1>
+
+        <img src="/chao.jpg" class="profile-pic">
+
+        <h2>Hello, I'm Edmark 👋</h2>
+
+<p>
+    Hello, I'm Edmark<br><br>
+    
+    19 years old, BSIT Computer Technology student at NorSu. People also call me Chaochao. I love drawing, playing guitar, dancing, cooking, programming, and learning languages (especially Mandarin right now).<br><br>
+    
+    I'm basically a jack of all trades, master of none
+    —I do many things averagely but get distracted easily and lose motivation. School work usually wins.
+</p>
+
+        <p>
+Why I Created This Studio
+
+I made CH-ART Studio <br></br>  because I want to help others stay consistent. I know how it feels to jump from one hobby to another without making real progress. This place is my reminder (and yours) that consistency and small daily progress matter way more than comparison or chasing perfection.
+
+        <p>
+            I don't want anyone to go through the same cycle of losing motivation like I often do. If you're a beginner, just keep showing up. Every line you draw is progress. You've got this.
+        </p>
+<h2 style="margin-top:35px; color:#d8b45c; font-family:'Playfair Display',serif;">
+    My Art Collection
+</h2>
+
+<p style="color:#cfc7b7; margin-bottom:15px;">
+    Some of my personal drawings and creative works.
+</p>
+
+<div class="art-grid">
+
+    <img src="/196.jpg" class="art-item">
+    <img src="/firefly.jpg" class="art-item">
+    <img src="/Flowers.jpg" class="art-item">
+    <img src="/favorite.jpg" class="art-item">
+
+</div>
+</div>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.querySelector('nav');
+        
+        if (hamburger && navMenu) {
+            hamburger.addEventListener('click', () => {
+                navMenu.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+        }
+        
+
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                if (hamburger) hamburger.classList.remove('active');
+            });
+        });
+        
+        const modal = document.getElementById('videoModal');
+        const videoFrame = document.getElementById('videoFrame');
+        const modalTitle = document.getElementById('modalTitle');
+        
+        document.querySelectorAll('.journey-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const videoUrl = this.getAttribute('data-video');
+                const title = this.getAttribute('data-title');
+                
+                modalTitle.textContent = title;
+                
+                let embedUrl = videoUrl;
+                if (embedUrl.includes("watch?v=")) {
+                    embedUrl = embedUrl.replace("watch?v=", "embed/");
+                }
+                
+                videoFrame.src = embedUrl;
+                modal.style.display = 'flex';
+            });
+        });
+        
+        window.closeVideoModal = function() {
+            modal.style.display = 'none';
+            videoFrame.src = '';
+        };
+        
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeVideoModal();
+            }
+        });
+        
+
+        const aboutPanel = document.getElementById('aboutPanel');
+        const openAbout = document.getElementById('openAbout');
+        const closeAbout = document.getElementById('closeAbout');
+        
+        if (openAbout) {
+            openAbout.addEventListener('click', function(e) {
+                e.preventDefault();
+                aboutPanel.classList.add('active');
+            });
+        }
+        
+        if (closeAbout) {
+            closeAbout.addEventListener('click', function() {
+                aboutPanel.classList.remove('active');
+            });
+        }
+        
+        const lightbox = document.getElementById("lightbox");
+        const lightboxImg = document.getElementById("lightbox-img");
+        
+        document.querySelectorAll(".art-item").forEach(img => {
+            img.addEventListener("click", () => {
+                lightbox.style.display = "flex";
+                lightboxImg.src = img.src;
+                lightbox.classList.add("show");
+            });
+        });
+        
+        lightbox.addEventListener("click", () => {
+            lightbox.style.display = "none";
+            lightbox.classList.remove("show");
+            lightboxImg.src = "";
+        });
+        
+        let reviews = [
+            { name: "Shan Karl", text: "This website made learning art feel peaceful and motivating.", stars: 5 },
+            { name: "Johnmarl", text: "The Loomis tutorials improved my sketch confidence.", stars: 5 },
+            { name: "Norris", text: "Elegant design and calming atmosphere. Very inspiring.", stars: 5 },
+            { name: "Gian", text: "I like how simple and clean the lessons are.", stars: 4 },
+            { name: "Jan rey", text: "This helped me understand shading better.", stars: 5 },
+            { name: "Aaron", text: "Very beginner friendly and easy to follow.", stars: 4 }
+        ];
+        
+        function renderReviews() {
+            const container = document.getElementById("reviewContainer");
+            if (!container) return;
+            
+            container.innerHTML = "";
+            
+            reviews.forEach(r => {
+                const div = document.createElement("div");
+                div.className = "card";
+                
+                const stars = "★★★★★".slice(0, r.stars) + "☆".repeat(5 - r.stars);
+                
+                div.innerHTML = `
+                <div class="stars">${stars}</div>
+                <p>"${r.text}"</p>
+                <strong>- ${r.name}</strong>
+            `;
+                container.appendChild(div);
+            });
+        }
+        
+        window.addReview = function() {
+            const name = document.getElementById("reviewName").value.trim() || "Anonymous";
+            const text = document.getElementById("reviewText").value.trim();
+            const stars = parseInt(document.getElementById("reviewStars").value);
+            
+            if (text === "") {
+                alert("Please write a review before posting.");
+                return;
+            }
+            
+            reviews.unshift({ name, text, stars });
+            renderReviews();
+            
+            
+            document.getElementById("reviewName").value = "";
+            document.getElementById("reviewText").value = "";
+        };
+        
+    
+        renderReviews();
+        
+    });
+</script>
+</body>
+</html>
